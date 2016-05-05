@@ -1,4 +1,5 @@
 (function () {
+	"use strict";
 	var response = {
 		'books': [
 			{
@@ -22,14 +23,20 @@
 		]
 	};
 
+	var SORT = {
+		UNSORTED: 0,
+		ASCENDING: 1,
+		DESCENDING: 2
+	};
+
 	function createTableHeading(headings) {
 		var tableHeading = "<tr>";
 
 		headings.forEach(function (column) {
-			tableHeading += "<th>" + column + "</th>";
+			tableHeading += "<th data-name='" + column + "'>" + column + "</th>";
 		});
 
-		tableHeading += "</tr>"
+		tableHeading += "</tr>";
 
 		return tableHeading;
 	}
@@ -48,75 +55,108 @@
 		return tableRow;
 	}
 
-	function createTables(config) {
-		var tableCount = config.tableCount,
-			table,
-			tableId,
-			tHeading;
+	function sortAscending(columnName, a, b) {
+		var x = a[columnName],
+			y = b[columnName];
+		return x < y ? -1 : (x > y ? 1 : 0);
+	}
 
-		var container = document.querySelector(".container");
+	function sortDescending(columnName, a, b) {
+		var x = a[columnName],
+			y = b[columnName];
+		return x < y ? 1 : (x > y ? -1 : 0);
+	}
 
-		for (var i = 0; i < tableCount; i++) {
-			tableId = "table" + (i + 1);
+	function sortTableData(columnElem, tableId, tableConfig, index) {
+		var columnName = columnElem.attributes[0].nodeValue,
+			tableData = tableConfig.tableData,
+			sortOrder = tableConfig.sortOrder[index],
+			name = document.querySelectorAll("#" + tableId + " .tableRow .name"),
+			author = document.querySelectorAll("#" + tableId + " .tableRow .author"),
+			publishedYear = document.querySelectorAll("#" + tableId + " .tableRow .published_year");
 
-			table = document.createElement("table");
-			table.id = tableId;
-
-			table.innerHTML = "<tbody>" + createTableHeading(config.tableHeadings[i]) + createTableRows(config.tableData[i]) + "</tbody>";
-			container.appendChild(table);
-
-			attachSortListeners(tableId, config.tableData[i]);
+		if (sortOrder === SORT.UNSORTED || sortOrder === SORT.DESCENDING) {
+			tableData.sort(sortAscending.bind(null, columnName));
+			tableConfig.sortOrder[index] = SORT.ASCENDING;
+		} else {
+			tableData.sort(sortDescending.bind(null, columnName));
+			tableConfig.sortOrder[index] = SORT.DESCENDING;
 		}
-	}
-
-	function attachSortListeners(tableId, tableData) {
-		var columns = document.querySelectorAll("#" + tableId + " th");
-
-		for (var i = 0; i < columns.length; i++) {
-			var c = columns[i];
-			c.addEventListener("click", sortTableData.bind(null, c.innerHTML, tableId, tableData));
-		};
-	}
-
-	function sortTableData(columnName, tableId, tableData) {
-		console.log("sort data on columnName = " + columnName + " and tableData = ", tableData);
-		tableData.sort(function (a, b) {
-			if (a[columnName] < b[columnName]) {
-				return -1;
-			} else if (a[columnName] > b[columnName]) {
-				return 1;
-			} else {
-				return 0;
-			}
-		});
-
-		console.log("sorted table = ", tableData);
-
-		var tableRow = document.querySelectorAll("#" + tableId + " .tableRow");
-		var name = document.querySelectorAll("#" + tableId + " .tableRow .name");
-		var author = document.querySelectorAll("#" + tableId + " .tableRow .author");
-		var publishedYear = document.querySelectorAll("#" + tableId + " .tableRow .published_year");
 
 		tableData.forEach(function (data, index) {
 			name[index].innerHTML = data.name;
 			author[index].innerHTML = data.author;
 			publishedYear[index].innerHTML = data.published_year;
 		});
+
+		displaySortArrow(columnName, tableId, tableConfig, index);
+
+	}
+
+	function displaySortArrow(columnName, tableId, tableConfig, index) {
+		// highlight table heading
+		var tableHeadings = document.querySelectorAll("#" + tableId + " th"),
+			th, i,
+			currentColumnName;
+
+		for (i = 0; i < tableHeadings.length; i++) {
+			th = tableHeadings[i];
+			currentColumnName = th.attributes[0].nodeValue;
+
+			if (columnName === currentColumnName) {
+				if (tableConfig.sortOrder[index] === SORT.ASCENDING) {
+					th.innerHTML = currentColumnName + "&#9650";
+				} else {
+					th.innerHTML = currentColumnName + "&#9660";
+				}
+			} else {
+				th.innerHTML = currentColumnName;
+			}
+		}
+	}
+
+	function addClickListeners(tableId, tableConfig) {
+		var tableHeadings = document.querySelectorAll("#" + tableId + " th"),
+			i, column;
+
+		for (i = 0; i < tableHeadings.length; i++) {
+			column = tableHeadings[i];
+			column.addEventListener("click", sortTableData.bind(null, column, tableId, tableConfig, i));
+		}
+	}
+
+	function createTables(config) {
+		var tableCount = config.length,
+			table,
+			tableId,
+			container = document.querySelector(".container"),
+			i;
+
+		for (i = 0; i < tableCount; i++) {
+			tableId = "table" + (i + 1);
+
+			table = document.createElement("table");
+			table.id = tableId;
+
+			table.innerHTML = "<tbody>" + createTableHeading(config[i].tableHeadings) + createTableRows(config[i].tableData) + "</tbody>";
+			container.appendChild(table);
+
+			addClickListeners(tableId, config[i]);
+		}
 	}
 
 	function init() {
-		var tableConfig = {
-			tableCount: 1,
-			tableHeadings: [
-				["name", "author", "published_year"]
-			],
-			tableData: []
-		};
+		var tableConfig = [
+			{
+				tableHeadings: ["name", "author", "published_year"],
+				tableData: response.books,
+				sortOrder: [SORT.UNSORTED, SORT.UNSORTED, SORT.UNSORTED]
+			}
+		];
 
-		// API call to server, fetch books data and set it to tableConfig.tableData at respective index.
+		// API call to server, fetch books data and set it into tableConfig at respective index.
 		// Create the config required to render multiple tables.
 		// In our case, we are creating only one table.
-		tableConfig.tableData[0] = response.books;
 
 		createTables(tableConfig);
 	}

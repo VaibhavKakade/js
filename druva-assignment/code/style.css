@@ -1,9 +1,29 @@
 table {
 	border-collapse: collapse;
+    margin: auto;
 }
 tr {
 	border: 1px solid #ddd;
 }
+th {
+    text-align: left;
+    cursor: pointer;
+}
 th, td {
 	padding: 5px;
 }
+/* .asc {
+
+    background-color: #FF9F9F;
+}
+.asc::after {
+    content: &#9650;
+}
+
+.desc {
+    background-color: #9D9DFF;
+}
+.desc::after{
+    content: &#9660;
+}
+ */
