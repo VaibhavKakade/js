@@ -1,8 +1,10 @@
 function combinationInheritance() {
+    "use strict";
+
     function Person(name) {
         this.name = name;
     }
-    Person.prototype.getName = function() {
+    Person.prototype.getName = function () {
         return this.name;
     };
 
@@ -11,12 +13,10 @@ function combinationInheritance() {
         this.rollNumber = rollNumber;
     }
     Student.prototype = new Person();
-    Student.prototype.getRollNumber = function() {
+    Student.prototype.getRollNumber = function () {
         return this.rollNumber;
     };
 
-    var obj = new Student("parent", "child");
-    console.log(obj);
-    console.log(obj.getName());
-    console.log(obj.getRollNumber());
+    var obj = new Student("Student 1", 10);
+    console.log(obj.getName(), obj.getRollNumber());
 }
