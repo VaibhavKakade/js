@@ -10,14 +10,40 @@
 <script type="text/javascript" src="parasiticCombinationInheritance.js"></script>
 <script type="text/javascript" src="tryout.js"></script>
 <script type="text/javascript">
-
+    "use strict";
     window.onload = function () {
         // prototypeChain();
         // constructorStealing();
-        combinationInheritance();
+        // combinationInheritance();
         // prototypalInheritance();
         // parasiticInheritance();
         // parasiticCombinationInheritance();
         // tryout();
     };
+
+    function inherit(child, parent) {
+        var reqProto = Object.create(parent.prototype);
+        reqProto.constructor = child;
+        child.prototype = reqProto;
+    }
+
+    function Person(name) {
+        this.name = name;
+    }
+    Person.prototype.getName = function () {
+        return this.name;
+    };
+
+
+    function Student(name, rollNumber) {
+        Person.call(this, name);
+        this.rollNumber = rollNumber;
+    }
+    inherit(Student, Person);
+    Student.prototype.getRollNumber = function () {
+        return this.rollNumber;
+    };
+
+    var s = new Student("abc", 10);
+    console.log(s);
 </script>
