@@ -1,0 +1,41 @@
+--------------------------------
+        JavaScript
+--------------------------------
+- Basic data types. Basic validations with logical reasoning. Ex:- differentiate array, or string.
+- OO js. Inheritance, Encapsulation and Polymorphism. (over-ride or over-load).
+- What is the use of Object.create()?
+- Functions. Prototype, advantage of prototype. call, apply and bind methods. closures. Method chaining. Curring.
+- Variable hoisting. Implementation of a block scope.
+- Difference between function and class. OR what makes function so special is JS?
+- Difference between host objects and native objects.
+- Event Bubling and Event Capturing. Event life cycle. not syntax, concept. W3C event model. Different categories of events.
+- Difference between window load event and document ready event?
+- What is strict mode in JS? What are the advantages and disadvantages to using it?
+
+--------------------------------
+            HTML
+--------------------------------
+- What is DOCTYPE?
+- 'data' attribute in HTML.
+- Difference local storage and session storage.
+- Describe the difference between <script>, <script async> and <script defer>.
+- Some of the new features of HTML 5. Need of new tags?
+--------------------------------
+            CSS
+--------------------------------
+- What is CSS box model?
+- Floats and how they work?
+- CSS positions?
+- What is a pseudo class and pseude element?
+- What's the difference between inline and inline-block?
+- Different positions? What's the difference between a relative, fixed, absolute and statically positioned element?
+- Specificity. Which css will be applied (.div1 .div2 .div3) || (#div3) ?
+- CSS media queries.
+--------------------------------
+            Other
+--------------------------------
+- Web performance optimization. Possible solutions.
+- Features of of es6?
+- Responsive web pages. Device detection.
+- Basic concept of MVC.
+- Networking concepts :- a] GET vs POST b] HTTP vs HTTPS
