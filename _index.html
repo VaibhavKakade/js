@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sample</title>
+</head>
+<body>
+<script type="text/javascript">
+    function AJAX() {}
+    AJAX.prototype = {
+        fetchData: function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "sample.txt", true);
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                console.log(xhr);
+                if (xhr.status === 200 && xhr.readyState === 4) {
+                    // console.log(xhr.responseText);
+                    window.eval(xhr.responseText);
+                    eval("console.log(bidDetailsMap);");
+                }
+            }
+        }
+    };
+    var aj = new AJAX();
+    aj.fetchData();
+</script>
+</body>
+</html>

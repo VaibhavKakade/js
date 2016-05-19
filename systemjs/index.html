@@ -1,0 +1,21 @@
+<html>
+<head>
+    <script src="system.js"></script>
+</head>
+<body>
+<script>
+    System.config({
+        // or 'traceur' or 'typescript'
+        transpiler: 'babel',
+        // or traceurOptions or typescriptOptions
+        babelOptions: {
+            "optional": [
+              "runtime"
+            ],
+            "nonStandard": false
+        }
+    });
+    System.import('main.js');
+</script>
+</body>
+</html>

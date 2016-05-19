@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script type="text/javascript">
+(function() {
+    var purl = window.location.href;
+    var url = '//ads.pubmatic.com/AdServer/js/pwt/5890/5';
+    var profileVersionId = '';
+    if(purl.indexOf('pwtv=')>0){
+        var regexp = /pwtv=(.*?)(&|$)/g;
+        var matches = regexp.exec(purl);
+        if(matches.length >= 2 && matches[1].length > 0){
+            profileVersionId = '/'+matches[1];
+        }
+    }
+    var wtads = document.createElement('script');
+    wtads.async = true;
+    wtads.type = 'text/javascript';
+    wtads.src = url+profileVersionId+'/pwt.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(wtads, node);
+})();
+
+
+var book = {
+    _year: 2000,
+    edition: 1,
+    name: "abc"
+};
+
+Object.defineProperty(book, "year", {
+    get: function () {
+        return this._year;
+    },
+    set : function (newVal) {
+        if(newVal > 2000 ) {
+            this.edition = newVal - this._year;
+            this._year = newVal;
+        }
+    }
+});
+</script>
+
+</body>
+</html>
