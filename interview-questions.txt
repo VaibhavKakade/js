@@ -38,4 +38,6 @@
 - Features of of es6?
 - Responsive web pages. Device detection.
 - Basic concept of MVC.
-- Networking concepts :- a] GET vs POST b] HTTP vs HTTPS
+- Networking concepts :-
+a] GET vs POST (http://www.w3schools.com/tags/ref_httpmethods.asp)
+b] HTTP vs HTTPS (http://www.biztechmagazine.com/article/2007/07/http-vs-https)
