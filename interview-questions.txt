@@ -41,3 +41,6 @@
 - Networking concepts :-
 a] GET vs POST (http://www.w3schools.com/tags/ref_httpmethods.asp)
 b] HTTP vs HTTPS (http://www.biztechmagazine.com/article/2007/07/http-vs-https)
+c] http status codes
+d] response states
+

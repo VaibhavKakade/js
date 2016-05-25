@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<htlm>
+    <head>
+        <script src="libs/angular.min.js"></script>
+    </head>
+    <body ng-app="app">
+        <div class="dragContainer">
+            <div allow-drag style="width:100px; height:100px; border:1px solid black;"></div>
+        </div>
+    </body>
+</htlm>
+<script>
+    /* global angular,console*/
+    "use strict";
+    var app = angular.module("app", []);
+
+    app.controller("myCtrl", ["$scope", function (scope) {
+        scope.data = {
+            name: "ABC",
+            id: 1
+        };
+    }]);
+
+    app.directive("allowDrag", function () {
+        return {
+            restrict: "A",
+            scope: true,
+            link: function (scope, elems, attr) {
+                console.log(scope, elems, attr);
+                /*var reqElem = elems[0];
+                reqElem.setAttribute("draggable", true);
+                reqElem.addEventListener("dragstart", function(evt){
+                    console.log("drag!!", evt);
+                    // ev.dataTransfer.setData("text", ev.target.id);
+                });*/
+
+                var reqElem = elems[0];
+
+                scope.mDown = false;
+
+                scope.down = function () {
+                    scope.mDown = true;
+                };
+                scope.move = function (evt) {
+                    console.log("move");
+                    if (scope.mDown) {
+                        let elem = this;
+                        let elemWidth = parseInt(elem.style.width.replace("px", ""));
+                        let elemHeight = parseInt(elem.style.height.replace("px", ""));
+                        console.log(elemWidth, elemHeight);
+                        elem.style.position = 'absolute';
+                        elem.style.left = evt.clientX - elemWidth + 'px';
+                        elem.style.top = evt.clientY - elemHeight + 'px';
+                    }
+                };
+                scope.up = function () {
+                    scope.mDown = false;
+                };
+
+                reqElem.addEventListener("mousedown", scope.down);
+                reqElem.addEventListener("mousemove",scope.move);
+                window.addEventListener("mouseup", scope.up);
+
+            }
+        };
+    });
+
+</script>

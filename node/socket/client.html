@@ -1,0 +1,48 @@
+<html>
+<head>
+	<script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+</head>
+<body>
+<div id="userName"></div>
+<ul id="chatList">
+</ul>
+
+<input id="chatMessage" type="text" />
+<button id="sendMessage">Send</button>
+</body>
+<script type="text/javascript">
+	var userName = null;
+	window.onload = function () {
+		var socket = io.connect("http://localhost:8989");
+
+		socket.on('news', function (data) {
+			console.log("data from server = ", data);
+		});
+
+		socket.on("clientId", function (data) {
+			if(!userName) {
+				userName = data;
+				document.getElementById("userName").innerHTML = userName;
+			}
+		});
+		socket.on('clientMessage', function (data) {
+			console.log("chatMessage = ", data);
+			var chatList = document.getElementById('chatList');
+			var listNode = document.createElement('li');
+			listNode.innerHTML = data;
+			chatList.appendChild(listNode);
+		});
+
+		var sendBtn = document.getElementById('sendMessage');
+		sendBtn.addEventListener('click', function () {
+			var message = document.getElementById('chatMessage').value;
+			var chatList = document.getElementById('chatList');
+			var listNode = document.createElement('li');
+			listNode.innerHTML = message + "("+userName+")";
+			chatList.appendChild(listNode);
+			socket.emit('chatMessage', message);
+		});
+	}
+
+</script>
+</html>

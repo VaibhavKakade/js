@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+    Array.prototype.myReduce = function(cb) {
+        if (typeof cb !== "function") {
+            throw new TypeError();
+        }
+
+        var arr = this,
+            returnValue,
+            arg1 = arr[0],
+            arg2 = arr[1];
+
+        for (var i = 2; i <= arr.length; i++) {
+            returnValue = cb.call(arr, arg1, arg2);
+            arg1 = returnValue;
+            arg2 = arr[i];
+        }
+
+        return returnValue;
+    };
+
+    var arr = [1,2,3,4,5];
+    var res = arr.myReduce((i1, i2) => i1 + i2);
+    console.log(res);
+</script>
+</body>
+</html>

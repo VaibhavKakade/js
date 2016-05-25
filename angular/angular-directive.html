@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Angular Directive</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="myController">
+    <input type="text" ng-model="inputValue">
+    <div my-Anchor text=inputValue url="http://www.google.co.in"></div>
+</div>
+
+<div>
+    <label>Select Two Fish:</label>
+    <input type="checkbox"
+         ng-model="isTwoFish"><br/>
+    <select>
+    <option>One Fish</option>
+    <option ng-selected="isTwoFish">Two Fish</option>
+    </select>
+</div>
+<script type="text/javascript">
+    "use strict";
+    var app = angular.module('myApp', []);
+
+    app.controller('myController', ['$scope', function($scope) {
+        $scope.inputValue = "";
+    }]);
+
+    app.directive('myAnchor', function () {
+        return {
+            restrict: 'A',
+            replace: true,
+            scope: {
+                url: '@',
+                text: '='
+            },
+            template: '<a href="{{url}}" target="_blank">{{text}}</a>'
+        };
+    });
+
+</script>
+</body>
+</html>

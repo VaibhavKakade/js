@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    .clearFix:after {
+        /*overflow: auto;*/
+        height: 0;
+        content: " ";
+        clear: both;
+        display: block;
+    }
+    .division {
+        width: 150px;
+        height: 50px;
+        border: 1px solid;
+    }
+    .floatLeft {
+        float: left;
+        border: 1px solid red;
+    }
+    .floatRight {
+        float: right;
+        border: 1px solid green;
+    }
+    .normalFloat {
+        float: none;
+        border: 1px solid blue;
+        /*clear: both;*/
+    }
+    </style>
+</head>
+<body>
+<div class="container clearFix">
+    <div class="division floatLeft">float left</div>
+    <div class="division floatRight">float right</div>
+    <div class="division normalFloat">normal float</div>
+</div>
+</body>
+</html>
