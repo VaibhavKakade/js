@@ -1,0 +1,27 @@
+{
+    "es5": false,
+    "ecmaFeatures": {
+        "modules": true
+    },
+    "env": {
+        "browser": true,
+        "es6": true,
+        "jasmine": true,
+        "node": false
+    },
+    "globals": {
+        "Ext": true,
+        "console": true,
+        "angular": true,
+        "Sjs": true,
+        "$i18n": true,
+        "Saba": true,
+        "System": true
+    },
+    "rules": {
+        "no-console": [0],
+        "quote-props": [2, "as-needed", {
+            "keywords": true
+        }],
+    }
+}
