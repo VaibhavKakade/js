@@ -1,22 +1,30 @@
 <html>
-<head>
-    <script src="jspm_packages/system.js"></script>
-    <script src="config.js"></script>
-</head>
-<body>
-<script>
-    System.config({
-        // or 'traceur' or 'typescript'
-        transpiler: 'babel',
-        // or traceurOptions or typescriptOptions
-        babelOptions: {
-            "optional": [
-              "runtime"
-            ],
-            "nonStandard": false
-        }
-    });
-    System.import('a.js');
-</script>
-</body>
+    <head>
+        <!--
+            - jspm simplifies the package management. you can load the packages from npm, git or any private repo
+
+            NOTE
+            if  you are using jspm , do specify/load the config.js for system js.
+            if you dont specify the config, the system.js wont be able to load the modules as it does not know the path of node modules.
+        -->
+        <script src="jspm_packages/system.js"></script>
+        <script src="config.js"></script>
+    </head>
+
+    <body>
+        <script>
+            System.config({
+                // or 'traceur' or 'typescript'
+                transpiler: 'babel',
+                // or traceurOptions or typescriptOptions
+                babelOptions: {
+                    "optional": [
+                      "runtime"
+                    ],
+                    "nonStandard": false
+                }
+            });
+            System.import('a.js');
+        </script>
+    </body>
 </html>
