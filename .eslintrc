@@ -7,7 +7,7 @@
         "browser": true,
         "es6": true,
         "jasmine": true,
-        "node": false
+        "node": true
     },
     "globals": {
         "Ext": true,
@@ -16,7 +16,8 @@
         "Sjs": true,
         "$i18n": true,
         "Saba": true,
-        "System": true
+        "System": true,
+        "module": true
     },
     "rules": {
         "no-console": [0],

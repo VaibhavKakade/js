@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="libs/system.0.19.24.min.js"></script>
+    </head>
+    <body>
+
+        <script>
+            System.config({
+                // or 'traceur' or 'typescript'
+                transpiler: 'babel',
+                // or traceurOptions or typescriptOptions
+                babelOptions: {
+                    optional: [
+                      "runtime"
+                    ],
+                    nonStandard: false
+                }
+            });
+            System.import('main.js');
+            /*
+                App structure is
+                assets
+                |---
+                    --- images
+                    --- css
+                libs
+                |---
+                    --- system.js
+                    --- [third party libraries]
+                scripts
+                |----
+                    --- [application scripts]
+            */
+        </script>
+    </body>
+</html>

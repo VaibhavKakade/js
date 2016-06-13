@@ -1,6 +1,7 @@
 {
     "browser": true,
     "esversion": 6,
+    "node": true,
     "globals": {
         "Ext": true,
         "console": true,
@@ -8,7 +9,8 @@
         "Sjs": true,
         "$i18n": true,
         "Saba": true,
-        "System": true
+        "System": true,
+        "module": true
     },
     "strict": false,
     "undef": true,
