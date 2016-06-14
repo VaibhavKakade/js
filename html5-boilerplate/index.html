@@ -1,37 +1,33 @@
-<!DOCTYPE html>
 <html>
     <head>
-        <script src="libs/system.0.19.24.min.js"></script>
-    </head>
-    <body>
+        <!--
+            - jspm simplifies the package management. you can load the packages from npm, git or any private repo
 
-        <script>
+            NOTE
+            if  you are using jspm , do specify/load the config.js for system js.
+            if you dont specify the config, the system.js wont be able to load the modules as it does not know the path of node modules.
+        -->
+        <script src="dist/app.min.js"></script>
+        <!-- <script src="jspm_packages/system.js"></script>
+        <script src="config.js"></script> -->
+    </head>
+
+    <body>
+        <!-- <script>
             System.config({
                 // or 'traceur' or 'typescript'
                 transpiler: 'babel',
                 // or traceurOptions or typescriptOptions
                 babelOptions: {
-                    optional: [
+                    "optional": [
                       "runtime"
                     ],
-                    nonStandard: false
+                    "nonStandard": false
                 }
             });
-            System.import('main.js');
-            /*
-                App structure is
-                assets
-                |---
-                    --- images
-                    --- css
-                libs
-                |---
-                    --- system.js
-                    --- [third party libraries]
-                scripts
-                |----
-                    --- [application scripts]
-            */
-        </script>
+            // System.import('app/scripts/a.js');
+            // System.import('build/app.concat.js');
+            System.import('dist/module.js');
+        </script> -->
     </body>
 </html>
