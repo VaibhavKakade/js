@@ -1,19 +1,26 @@
 <html>
     <head>
         <!--
-            - jspm simplifies the package management. you can load the packages from npm, git or any private repo
+            jspm simplifies the package management. you can load the packages from npm, git or any private repo
 
             NOTE
             if  you are using jspm , do specify/load the config.js for system js.
             if you dont specify the config, the system.js wont be able to load the modules as it does not know the path of node modules.
         -->
-        <script src="dist/app.min.js"></script>
-        <!-- <script src="jspm_packages/system.js"></script>
-        <script src="config.js"></script> -->
+
+        <!--(if target prod)>
+        <script src="app.min.js"></script>
+        <!(endif)-->
+
+        <!--(if target dev)><!-->
+        <script src="jspm_packages/system.js"></script>
+        <script src="config.js"></script>
+        <!--<!(endif)-->
     </head>
 
     <body>
-        <!-- <script>
+        <!--(if target dev)><!-->
+        <script>
             System.config({
                 // or 'traceur' or 'typescript'
                 transpiler: 'babel',
@@ -25,9 +32,8 @@
                     "nonStandard": false
                 }
             });
-            // System.import('app/scripts/a.js');
-            // System.import('build/app.concat.js');
-            System.import('dist/module.js');
-        </script> -->
+            System.import('app/scripts/a.js');
+        </script>
+        <!--<!(endif)-->
     </body>
 </html>

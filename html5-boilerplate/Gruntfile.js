@@ -2,6 +2,10 @@ var DEV = 1;
 var PROD = 2;
 module.exports = function (grunt) {
 
+    // TODO :-
+    // 1] add plugin for css minification
+    // 2] add plugins for copying the assets
+
     /*
         This module will read the dependencies/devDependencies/peerDependencies/optionalDependencies in your package.json and load grunt tasks that match the provided patterns.
 
@@ -21,15 +25,10 @@ module.exports = function (grunt) {
     */
     require('load-grunt-tasks')(grunt);
 
-    grunt.config("ENV", process.argv[3] === "prod" ? PROD : DEV);
-
-    console.log(process.argv);
-    console.log("Environment", grunt.config("ENV"));
-
     // Project configuration.
     grunt.initConfig({
         clean: ["dist"],
-        pkg: grunt.file.readJSON('package.json'),
+        // pkg: grunt.file.readJSON('package.json'),
         browserify: {
             dist: {
                 options: {
@@ -49,9 +48,26 @@ module.exports = function (grunt) {
                     "dist/app.min.js": "dist/app.min.js"
                 }
             }
+        },
+        copy: {
+            copyIndex: {
+                src: "index.html",
+                dest: "dist/index.html"
+            },
+            copyAssets: {
+                src: "app/assets/**",
+                dest: "dist/assets/"
+            }
+        },
+        targethtml: {
+            prod: {
+                files: {
+                    "dist/index.html": "index.html"
+                }
+            }
         }
     });
 
-    grunt.registerTask("build", ["clean", "browserify", "uglify"]);
+    grunt.registerTask("build", ["clean", "browserify", "uglify", "targethtml:prod"]);
     // grunt.registerTask("minify", ["uglify"]);
 };
