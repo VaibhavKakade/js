@@ -3,7 +3,7 @@ var PROD = 2;
 module.exports = function (grunt) {
 
     // TODO :-
-    // 1] add plugin for css minification
+    // 1] add plugin for css minification [done]
     // 2] add plugins for copying the assets
 
     /*
@@ -65,9 +65,16 @@ module.exports = function (grunt) {
                     "dist/index.html": "index.html"
                 }
             }
+        },
+        cssmin: {
+            target: {
+                files: {
+                    "dist/main.min.css": ["app/assets/css/**/*.css", "!app/assets/css/**/*.min.css"]
+                }
+            }
         }
     });
 
-    grunt.registerTask("build", ["clean", "browserify", "uglify", "targethtml:prod"]);
+    grunt.registerTask("build", ["clean", "browserify", "uglify", "cssmin", "targethtml:prod"]);
     // grunt.registerTask("minify", ["uglify"]);
 };
