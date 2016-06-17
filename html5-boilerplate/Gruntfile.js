@@ -29,7 +29,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         config: {
             cssPath: "app/assets/css",
-            imagePath: "app/assets/images"
+            imagePath: "app/assets/images",
             assetsPath: "app/assets"
         },
         clean: ["dist"],
