@@ -27,6 +27,11 @@ module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig({
+        config: {
+            cssPath: "app/assets/css",
+            imagePath: "app/assets/images"
+            assetsPath: "app/assets"
+        },
         clean: ["dist"],
         // pkg: grunt.file.readJSON('package.json'),
         browserify: {
@@ -69,7 +74,7 @@ module.exports = function (grunt) {
         cssmin: {
             target: {
                 files: {
-                    "dist/main.min.css": ["app/assets/css/**/*.css", "!app/assets/css/**/*.min.css"]
+                    "dist/main.min.css": ["<%=config.cssPath%>/**/*.css", "!<%=config.cssPath%>/**/*.min.css"]
                 }
             }
         }
