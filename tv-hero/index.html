@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <!--
+            jspm simplifies the package management. you can load the packages from npm, git or any private repo
+
+            NOTE
+            if  you are using jspm , do specify/load the config.js for system js.
+            if you dont specify the config, the system.js wont be able to load the modules as it does not know the path of node modules.
+
+            To start the project use :-
+            1] jspm install // This will install the jspm dependencies
+            2] jspm init -y // This command will initialize the jspm
+        -->
+
+        <link rel="stylesheet" href="app/assets/css/materialize.min.css">
+
+        <!--(if target prod)>
+        <link rel="stylesheet" href="dist/main.min.css">
+        <!(endif)-->
+
+        <!--(if target prod)>
+        <script src="app.min.js"></script>
+        <!(endif)-->
+
+        <!--(if target dev)><!-->
+        <script src="jspm_packages/system.js"></script>
+        <script src="config.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="app/libs/materialize.min.js"></script>
+        <!--<!(endif)-->
+    </head>
+
+    <body>
+        <div class="container"></div>
+        <!--(if target dev)><!-->
+        <script>
+            System.config({
+                // or 'traceur' or 'typescript'
+                transpiler: 'babel',
+                // or traceurOptions or typescriptOptions
+                babelOptions: {
+                    "optional": [
+                      "runtime"
+                    ],
+                    "nonStandard": false
+                }
+            });
+            System.import('app/main.js');
+        </script>
+        <!--<!(endif)-->
+    </body>
+</html>
