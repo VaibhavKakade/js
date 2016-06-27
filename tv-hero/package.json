@@ -22,8 +22,7 @@
       "babel-preset-es2015": "npm:babel-preset-es2015@^6.9.0",
       "jspm-loader-jsx": "npm:jspm-loader-jsx@^0.0.7",
       "react": "npm:react@^15.1.0",
-      "react-dom": "npm:react-dom@^15.1.0",
-      "react-router": "npm:react-router@^2.4.1"
+      "react-dom": "npm:react-dom@^15.1.0"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",

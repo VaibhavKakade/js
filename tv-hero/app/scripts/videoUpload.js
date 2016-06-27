@@ -17,7 +17,7 @@ class VideoUpload extends React.Component {
                     <textarea className="materialize-textarea"></textarea>
                 </div>
                 <div className="row">
-                    <button className="upload btn waves-effect waves-light">Upload</button>
+                    <button onClick={this.uploadVideo} className="upload btn waves-effect waves-light">Upload</button>
                 </div>
             </div>
         );
@@ -27,6 +27,7 @@ class VideoUpload extends React.Component {
     }
     uploadVideo() {
         // ajax to upload the video
+        console.log("upload video");
     }
 }
 
