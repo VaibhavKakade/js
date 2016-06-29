@@ -1,6 +1,28 @@
-header .appHeaderLogo {
+/* .nav-wrapper is the app header */
+.nav-wrapper .appHeaderLogo {
     padding-left: 20px!important;
 }
 .nav-wrapper ul li.userMenu {
     padding-right: 20px;
+}
+
+/* .container is the app body */
+.container .inlineBlock {
+    display: inline-block;
+}
+.container .videoThumbnail {
+    width: 250px;
+}
+.container .relative {
+    position: relative;
+}
+.container .absolute {
+    position: absolute;
+}
+.container .collection .watchBtn {
+    right: 10px;
+    top: 25px;
+}
+.container .collection .videoDescription {
+    font-family: "Roboto", sans-serif;
 }

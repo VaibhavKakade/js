@@ -1,14 +1,18 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import {render} from "react-dom";
+import { Router, Route, hashHistory, IndexRoute } from "react-router";
 
 // import application views
-import VideoUpload from "./scripts/videoUpload";
-import VideoList from "./scripts/videoList";
+import VideoUpload from "./scripts/views/videoUpload";
+import VideoList from "./scripts/views/videoList";
 
-import Header from "./scripts/header";
-import appRouter from "./scripts/appRouter";
+import App from "./app";
+
+// import appRouter from "./scripts/appRouter";
 
 // Add routing logic here!!!
+// Working!!!
+/*
 appRouter.init({
     selector: document.querySelector(".container"),
     routes: {
@@ -18,46 +22,14 @@ appRouter.init({
     }
 });
 ReactDOM.render(<Header />, document.querySelector("header"));
-
-
-// ReactDOM.render(<VideoUpload />, document.querySelector(".container"));
-// ReactDOM.render(<VideoList />, document.querySelector(".container"));
-
-/*ReactDOM.render((
-  <Router history={browserHistory}>
-    <Route path="/" component={VideoList}>
-        <IndexRoute component={VideoList} />
-        <Route path="videoUpload" component={VideoUpload} />
-    </Route>
-  </Router>
-), document.querySelector(".container"));
 */
 
-/*
-ReactDOM.render((
-  <Router history={browserHistory}>
-    <Route path="/" component={VideoList} />
-    <Route path="/videoUpload" component={VideoUpload} />
-  </Router>
-), document.querySelector(".container"));
-*/
-/*ReactDOM.render((
-   <Router history = {browserHistory}>
-        <Route path = "/" component={VideoList}>
-            <IndexRoute component={VideoList} />
-            <Route path = "videoUpload" component={VideoUpload} />
-      </Route>
-   </Router>
-), document.querySelector(".container"));*/
-
-/*
-let routes = (
-  <Route name="home" path="/" handler={VideoList}>
-    <Route name="upload" path="/videoUpload" handler={VideoUpload}/>
-  </Route>
-);
-
-Router.run(routes, function (Handler) {
-  React.render(<Handler/>, document.body);
-});
-*/
+render((
+    <Router history={hashHistory}>
+        <Route path="/" component={App}>
+            <IndexRoute component={VideoList}/>
+            <Route path="/videoList" component={VideoList}/>
+            <Route path="/videoUpload" component={VideoUpload}/>
+        </Route>
+     </Router>
+), document.getElementById("app"));

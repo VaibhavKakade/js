@@ -1,13 +1,14 @@
 import React from "react";
-import appRouter from "./appRouter";
+// import appRouter from "../appRouter";
+import { Link } from "react-router";
 
 class Header extends React.Component {
     render() {
         return (
             <div className="row">
                 <nav>
-                    <div className="nav-wrapper">
-                        <a href="#" onClick={this.navigateHome} className="brand-logo appHeaderLogo">TV Hero</a>
+                    <div className="nav-wrapper  grey darken-4">
+                        <a href="#" className="brand-logo appHeaderLogo">TV Hero</a>
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
                             <li>
                                 <a href="#/trending">Trending</a>
@@ -31,7 +32,7 @@ class Header extends React.Component {
                                         <a href="#!">Sign Up</a>
                                     </li>
                                     <li>
-                                        <a onClick={this.navigateVideoList} href="#">Upload Video</a>
+                                        <Link to="/videoUpload">Upload Video</Link>
                                     </li>
                                 </ul>
                             </li>
@@ -44,15 +45,6 @@ class Header extends React.Component {
     componentDidMount() {
         $(".dropdown-button").dropdown();
     }
-    navigateHome() {
-        appRouter.navigate("videoList");
-    }
-    navigateVideoList(route) {
-        appRouter.navigate("videoUpload");
-    }
 }
 
 export default Header;
-
-// <Link to="videoUpload">Upload Video</Link>
-// <a href="/#/videoUpload">Upload Video</a>
