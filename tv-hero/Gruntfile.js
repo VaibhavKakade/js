@@ -1,5 +1,3 @@
-var DEV = 1;
-var PROD = 2;
 module.exports = function (grunt) {
 
     // TODO :-
@@ -23,7 +21,7 @@ module.exports = function (grunt) {
         require('load-grunt-tasks')(grunt);
 
     */
-    require('load-grunt-tasks')(grunt);
+    require("load-grunt-tasks")(grunt);
 
     // Project configuration.
     grunt.initConfig({
@@ -37,7 +35,7 @@ module.exports = function (grunt) {
         browserify: {
             dist: {
                 options: {
-                    transform: ["babelify"]
+                    transform: ["babelify", "react"]
                 },
                 files: {
                     // if the source file has an extension of es6 then
@@ -54,7 +52,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-        copy: {
+        /*copy: {
             copyIndex: {
                 src: "index.html",
                 dest: "dist/index.html"
@@ -63,7 +61,7 @@ module.exports = function (grunt) {
                 src: "app/assets/**",
                 dest: "dist/assets/"
             }
-        },
+        },*/
         targethtml: {
             prod: {
                 files: {

@@ -6,7 +6,7 @@ import { Router, Route, hashHistory, IndexRoute } from "react-router";
 import VideoUpload from "./scripts/views/videoUpload";
 import VideoList from "./scripts/views/videoList";
 import VideoDetails from "./scripts/views/videoDetails";
-import App from "./app";
+import App from "./scripts/views/app";
 
 // import appRouter from "./scripts/appRouter";
 
