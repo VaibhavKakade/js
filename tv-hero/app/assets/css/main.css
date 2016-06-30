@@ -26,3 +26,6 @@
 .container .collection .videoDescription {
     font-family: "Roboto", sans-serif;
 }
+.container .commentsContainer {
+    margin-top: 20px;
+}

@@ -1,7 +1,6 @@
 import React from "react";
 import { validationRegEx, videoHelper } from "../commons/helper";
 
-console.log(validationRegEx);
 class VideoUpload extends React.Component {
     constructor() {
         super();

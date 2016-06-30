@@ -5,7 +5,7 @@ import { Router, Route, hashHistory, IndexRoute } from "react-router";
 // import application views
 import VideoUpload from "./scripts/views/videoUpload";
 import VideoList from "./scripts/views/videoList";
-
+import VideoDetails from "./scripts/views/videoDetails";
 import App from "./app";
 
 // import appRouter from "./scripts/appRouter";
@@ -30,6 +30,7 @@ render((
             <IndexRoute component={VideoList}/>
             <Route path="/videoList" component={VideoList}/>
             <Route path="/videoUpload" component={VideoUpload}/>
+            <Route path="/videoDetails/:videoId" component={VideoDetails}/>
         </Route>
      </Router>
 ), document.getElementById("app"));

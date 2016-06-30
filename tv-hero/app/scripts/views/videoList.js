@@ -1,10 +1,12 @@
 import React from "react";
 import {videoHelper} from "../commons/helper";
+// import { Router } from "react-router";
 
 class VideoRow extends React.Component {
     render() {
-        // useful link for fetching images
-        // http://stackoverflow.com/questions/2068344/how-do-i-get-a-youtube-video-thumbnail-from-the-youtube-api
+        // USEFUL LINK for fetching images :-
+        // 1] http://stackoverflow.com/questions/2068344/how-do-i-get-a-youtube-video-thumbnail-from-the-youtube-api
+
         let vData = this.props.data,
             videoId = videoHelper.getVideoId(vData.url),
             title = vData.title,
@@ -22,9 +24,14 @@ class VideoRow extends React.Component {
     }
 
     watchVideo(videoId) {
-        console.log("videoId ", videoId);
+        // USEFUL LINK :-
+        // 1] http://stackoverflow.com/questions/31079081/programmatically-navigate-using-react-router
+        this.context.router.push("/videoDetails/" + videoId);
     }
 }
+VideoRow.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 
 class VideoList extends React.Component {
@@ -55,18 +62,7 @@ class VideoList extends React.Component {
 
     componentDidMount() {
         $(".loader").hide();
-        // Find a way to elegantly fetch data
         var that = this;
-
-        /*var player = new YT.Player("video-placeholder", {
-            width: 600,
-            height: 400,
-            videoId: "lP1RMQ02Tf4",
-            playerVars: {
-                color: "white"
-            }
-        });*/
-
         $.ajax({
             url: "app/mock/videoList.json",
             method: "GET",
