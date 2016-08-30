@@ -17,6 +17,7 @@
     "grunt-contrib-cssmin": "^1.0.1",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-targethtml": "^0.2.6",
+    "gruntify-eslint": "^3.0.0",
     "jspm": "^0.16.39",
     "load-grunt-tasks": "^3.5.0"
   },

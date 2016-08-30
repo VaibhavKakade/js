@@ -75,9 +75,35 @@ module.exports = function (grunt) {
                     "dist/main.min.css": ["<%=config.cssPath%>/**/*.css", "!<%=config.cssPath%>/**/*.min.css"]
                 }
             }
+        },
+        eslint: {
+            src: ["app/main.js", "app/scripts/**/*.js"],
+            options: {
+                config: ".eslintrc.json",
+                rules: ".eslintrc"
+            }
         }
     });
 
     grunt.registerTask("build", ["clean", "browserify", "uglify", "cssmin", "targethtml:prod"]);
-    // grunt.registerTask("minify", ["uglify"]);
+
+    grunt.registerTask("lint-code", ["eslint"]);
+
+    grunt.registerTask("lint", function() {
+        var CLIEngine = require("eslint").CLIEngine;
+        var cli = new CLIEngine({
+            envs: ["browser", "es6"]
+        });
+        var report = cli.executeOnFiles(["app/main.js", "app/scripts/**/*.js"]);
+        var errorReport = CLIEngine.getErrorResults(report.results);
+        console.log("Found error in "+errorReport.length+" files...");
+        errorReport.forEach(function(error){
+            console.log("errors :- "+error.errorCount+", warnings:- "+error.warningCount+", " +error.filePath);
+            error.messages.forEach(function(m) {
+                console.log("["+m.line +","+ m.column+"] " + m.message);
+            });
+        });
+
+        return !errorReport.length;
+    });
 };

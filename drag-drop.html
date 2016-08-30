@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drag and Drop</title>
+    <style>
+        .container {
+            width: 600px;
+            height: 600px;
+        }
+        #dragDiv {
+            width: 50px;
+            height: 50px;
+            box-sizing: border-box;
+            margin-left: 100px;
+            /*padding: 20px;*/
+            /*margin: 30px 20px;*/
+            display: inline-block;
+        }
+        #dragDiv>.contents {
+            background-color: #3F51B5;
+            width: 100%;
+            height: 100%;
+        }
+        .dropZone {
+            background-color: #F44336;
+            width: 100%;
+            height: 200px;
+        }
+        .verticalLineContainer {
+            height: 40px;
+            /*display: none;*/
+        }
+        .rotationHolder {
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            margin: auto;
+            background-color: yellow;
+        }
+        .verticalLine {
+            border-left: 5px solid green;
+            height: 100%;
+            width: 1px;
+            margin: auto;
+        }
+        .rotateable {
+            left: 100px;
+            top:100px;
+            position: absolute;
+        }
+    </style>
+    <!-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
+    <script src="libs/jquery-1.11.1.min.js"></script>
+    <script src="rotate.js"></script>
+    <script src="libs/interact.js"></script>
+    <script src="libs/propeller.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <div class="dropZone">
+    </div>
+
+    <!-- <div id="dragDiv" class="draggable_wp" draggable="true"> -->
+    <div id="dragDiv" class="rotateable">
+        <div class="verticalLineContainer">
+            <div class="rotationHolder"></div>
+            <div class="verticalLine"></div>
+        </div>
+        <div class="contents"></div>
+    </div>
+
+</div>
+<script>
+function dragOver(ev) {
+    // ev.currentTarget.style.opacity = 0.4;
+    ev.preventDefault();
+}
+
+function dragStart(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    console.log("drop # data = ", data);
+    ev.target.appendChild(document.getElementById(data));
+    ev.target.removeEventListener("dragstart", dragStart);
+
+    var dragDiv = document.getElementById("dragDiv");
+    dragDiv.setAttribute("draggable", false);
+    /*ev.target.removeEventLis tener("drop", drop);
+    ev.target.removeEventListener("dragover", dragover);*/
+}
+var mouseDownFlag = false;
+var position = {
+    x: 0, y:0,
+    rotation: 0
+}
+function handleDown(event) {
+    mouseDownFlag = true;
+    position.x = event.x;
+    position.y = event.y;
+}
+function handleMove(event) {
+    if(mouseDownFlag) {
+        console.log(event);
+        var dragDiv = document.getElementById("dragDiv");
+        if(position.x < event.pageX) {
+            position.rotation += 10
+            dragDiv.style.transform = "rotate("+position.rotation+"deg)";
+        } else {
+            position.rotation -= 10
+            dragDiv.style.transform = "rotate("+position.rotation+"deg)";
+        }
+    }
+    position.x = event.pageX;
+}
+function handleUp(event) {
+    mouseDownFlag = false;
+}
+
+window.onload = function () {
+    /*var dragDiv = document.getElementById("dragDiv");
+    dragDiv.addEventListener("click", function() {
+        var verticalLineContainer = dragDiv.children[0];
+        verticalLineContainer.style.display = "block";
+        var rotationHolder = verticalLineContainer.children[0];
+        rotationHolder.addEventListener("mousedown", handleDown);
+        rotationHolder.addEventListener("mousemove", handleMove);
+        rotationHolder.addEventListener("mouseup", handleUp);
+        // console.log();
+    });
+    dragDiv.addEventListener("dragstart", dragStart);
+
+    var dropZone = document.querySelector(".dropZone");
+    dropZone.addEventListener("drop", drop);
+    dropZone.addEventListener("dragover", dragOver);*/
+
+
+    interact("#dragDiv")
+            .draggable({
+                inertia: true,
+                restrict: {
+                    restriction: "parent",
+                    endOnly: true,
+                    elementRect: {
+                        top: 0,
+                        left: 0,
+                        bottom: 1,
+                        right: 1
+                    }
+                },
+                autoScroll: true
+            })
+            .on("dragmove", function (event) {
+                var target = event.target,
+                    // keep the dragged position in the data-x/data-y attributes
+                    x = (parseFloat(target.getAttribute("data-x")) || 0) + event.dx,
+                    y = (parseFloat(target.getAttribute("data-y")) || 0) + event.dy;
+
+
+
+                target.style.transform = "translate(" + x + "px, " + y + "px)";
+                // translate the element
+
+                // update the posiion attributes
+                target.setAttribute("data-x", x);
+                target.setAttribute("data-y", y);
+            })
+            /*.on("dragend", function (event) {
+                var target = event.target,
+                    x = 0,
+                    y = 0;
+
+                if (!target.getAttribute("data-valid-drop")) {
+                    // reset the element position
+                    target.style.webkitTransform = target.style.transform = "translate(" + x + "px, " + y + "px)";
+                    // update the posiion attributes
+                    target.setAttribute("data-x", x);
+                    target.setAttribute("data-y", y);
+                }
+            })*/
+            .resizable({
+                preserveAspectRatio: true,
+                edges: {
+                    left: true,
+                    right: true,
+                    bottom: true,
+                    top: true
+                }
+            })
+            .on("resizemove", function(event) {
+                var target = event.target,
+                x = (parseFloat(target.getAttribute("data-x")) || 0),
+                y = (parseFloat(target.getAttribute("data-y")) || 0);
+
+                // update the element"s style
+                target.style.width = event.rect.width + "px";
+                target.style.height = event.rect.height + "px";
+
+                // translate when resizing from top or left edges
+                x += event.deltaRect.left;
+                y += event.deltaRect.top;
+
+
+                target.style.webkitTransform = target.style.transform =
+                    "translate(" + x + "px," + y + "px) ";
+
+                target.setAttribute("data-x", x);
+                target.setAttribute("data-y", y);
+            });
+
+
+
+    window.c = new CustomRotate(".verticalLineContainer");
+    /*window.p = new Propeller(document.querySelector("#dragDiv"), {
+        inertia: 0,
+        speed: 0,
+    });*/
+    // new Propeller(document.querySelector(".rotationHolder"), {inertia: 0, speed: 0});
+
+}
+</script>
+</body>
+</html>

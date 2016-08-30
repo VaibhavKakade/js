@@ -14,8 +14,8 @@
 
         <!--Import Google Icon Font-->
         <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="app/assets/css/materialize.min.css">
-        <link rel="stylesheet" href="app/assets/css/main.css">
+        <!-- <link rel="stylesheet" href="app/assets/css/materialize.min.css">
+        <link rel="stylesheet" href="app/assets/css/main.css"> -->
 
         <!--(if target prod)>
         <link rel="stylesheet" href="dist/main.min.css">
@@ -28,13 +28,12 @@
         <!--(if target dev)><!-->
         <script src="jspm_packages/system.js"></script>
         <script src="config.js"></script>
-        <script type="text/javascript" src="app/libs/jquery-2.1.1.min.js"></script>
+        <script src="app/libs/jquery-2.1.1.min.js"></script>
         <script src="app/libs/materialize.min.js"></script>
-        <script src="https://www.youtube.com/iframe_api"></script>
+        <!-- <script src="https://www.youtube.com/iframe_api"></script> -->
 
         <!-- jspm bundle app/main + react ./dist/build.js --minify -->
-        <!-- <script src="dist/app.js"></script> -->
-        <script src="dist/build.js"></script>
+        <!-- <script src="dist/build.js"></script> -->
         <!--<!(endif)-->
     </head>
 
@@ -57,10 +56,11 @@
             </div>
         </div>
         <div id="app"></div>
+        <script src="dist/app.js"></script>
         <!--(if target dev)><!-->
-        <script>
+        <!-- <script>
             System.import("app/main.js");
-        </script>
+        </script> -->
         <!--<!(endif)-->
     </body>
 </html>

@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sample</title>
+    <title>Parent</title>
 </head>
 <body>
+<button id="btn">Click</button>
 <script type="text/javascript">
-    window.open("child-window.html");
+    window.onload = function () {
+        var btn = document.querySelector("#btn");
+        btn.addEventListener("click", function() {
+            console.log("click");
+            var windowHandle = window.open("child-window.html");
+            windowHandle.onload = function() {
+                console.log("onload!!!!");
+            };
+            /*windowHandle.addEventListener("load",function () {
+                console.log("onload!!!!");
+                // alert("loaded");
+            });*/
+        });
+    }
 </script>
 </body>
 </html>

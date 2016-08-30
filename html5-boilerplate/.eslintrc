@@ -1,0 +1,52 @@
+{
+    "env": {
+        "browser": true
+    },
+    "globals": {},
+    "extends": "eslint:recommended",
+    "installedESLint": true,
+    "jquery": true,
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "plugins": [],
+    "rules": {
+        "no-console": 0,
+        "comma-dangle": ["error", "never"],
+        "linebreak-style": 2,
+        "semi": ["error", "always"],
+        "no-cond-assign": ["error", "always"],
+        "no-constant-condition": ["error"],
+        "no-dupe-args": ["error"],
+        "no-dupe-keys": ["error"],
+        "no-duplicate-case": ["error"],
+        "no-empty": ["error"],
+        "no-ex-assign": ["error"],
+        "no-extra-boolean-cast": ["error"],
+        "no-extra-semi": ["error"],
+        "no-func-assign": ["error"],
+        "no-inner-declarations": ["error"],
+        "no-obj-calls": ["error"],
+        "no-sparse-arrays": ["error"],
+        "no-unexpected-multiline": ["error"],
+        "no-unreachable": ["error"],
+        "use-isnan": ["error"],
+        "brace-style": ["error", "1tbs"],
+        "no-eq-null": ["error"],
+        "no-eval": ["error"],
+        "dot-notation": ["error"],
+        "eqeqeq": ["error"],
+        "no-else-return": ["error"],
+        "no-empty-function": ["error"],
+        "no-implicit-globals": ["error"],
+        "no-invalid-this": ["error"],
+        "no-new-func": ["error"],
+        "no-proto": ["error"],
+        "no-redeclare": ["error"],
+        "no-return-assign": ["error"],
+        "no-with": ["error"],
+        "no-unused-vars": ["error"],
+        "no-use-before-define": ["error"],
+        "no-undef-init": ["error"]
+    }
+}
