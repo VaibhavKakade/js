@@ -1,6 +1,6 @@
 // import libraries
-import "libs/jquery-2.1.1.min.js";
-import "libs/materialize.min.js";
+// import "../libs/jquery-2.1.1.min.js";
+// import "../libs/materialize.min.js";
 
 // import css
 import "./assets/css/materialize.min.css!";
@@ -17,8 +17,6 @@ import VideoList from "./scripts/views/videoList";
 import VideoDetails from "./scripts/views/videoDetails";
 import App from "./scripts/views/app";
 
-var a = 10;
-var a = 10;
 // import appRouter from "./scripts/appRouter";
 
 // Add routing logic here!!!

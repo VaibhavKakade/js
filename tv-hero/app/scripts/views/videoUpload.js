@@ -9,26 +9,27 @@ class VideoUpload extends React.Component {
             url: "",
             title: "",
             description: "",
-            "videoId": ""
+            videoId: ""
         };
 
+        // var oThis = this;
         this.uploadVideo = this.uploadVideo.bind(this);
-        // this.handleChange = this.handleChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
     render() {
         return (
             <div className="row">
                 <div className="row">
                     <label>YouTube URL</label>
-                    <input onChange={this.handleChange.bind(this,"url")} type="text" />
+                    <input name="url" onChange={this.handleChange} type="text" />
                 </div>
                 <div className="row">
                     <label>Title</label>
-                    <input onChange={this.handleChange.bind(this,"title")} type="text" />
+                    <input name="title" onChange={this.handleChange} type="text" />
                 </div>
                 <div className="row">
                     <label>Description</label>
-                    <textarea onChange={this.handleChange.bind(this,"description")} className="materialize-textarea"></textarea>
+                    <textarea name="description" onChange={this.handleChange} className="materialize-textarea"></textarea>
                 </div>
                 <div className="row">
                     <button onClick={this.uploadVideo} className="upload btn waves-effect waves-light orange">Upload</button>
@@ -36,11 +37,10 @@ class VideoUpload extends React.Component {
             </div>
         );
     }
-    handleChange(inputName, event) {
-        var reqState = {};
-
-        reqState[inputName] = event.target.value;
-        this.setState(reqState);
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
     }
     componentDidMount() {
         $(".loader").hide();
@@ -48,8 +48,6 @@ class VideoUpload extends React.Component {
     dataValid() {
         let valid = true,
             url = this.state.url;
-        /*title = this.state.title,
-        description = this.state.description;*/
 
         if (!url.includes("youtube")) {
             console.warn("please enter youtube url");
@@ -59,7 +57,6 @@ class VideoUpload extends React.Component {
         return valid;
     }
     uploadVideo() {
-
         // apply data validation here
         if (this.dataValid()) {
             // ajax to upload the video

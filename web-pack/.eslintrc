@@ -3,11 +3,6 @@
         "browser": true
     },
     "globals": {
-        "$": true,
-        "Ext": true,
-        "Sjs": true,
-        "Asjs": true,
-        "$i18n": true
     },
     "extends": "eslint:recommended",
     "installedESLint": true,
@@ -18,6 +13,7 @@
     "plugins": [],
     "rules": {
         "no-console": 0,
+        "no-mixed-spaces-and-tabs": 1,
         "comma-dangle": ["error", "never"],
         "linebreak-style": 2,
         "semi": ["error", "always"],
@@ -51,7 +47,7 @@
         "no-redeclare": ["error"],
         "no-return-assign": ["error"],
         "no-with": ["error"],
-        "no-unused-vars": ["warning"],
+        "no-unused-vars": ["error"],
         "no-use-before-define": ["error"],
         "no-undef-init": ["error"]
     }
