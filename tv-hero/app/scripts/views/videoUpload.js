@@ -1,5 +1,6 @@
 import React from "react";
-import { validationRegEx, videoHelper } from "../commons/helper";
+// import { validationRegEx, videoHelper } from "../commons/helper";
+import { videoHelper } from "../commons/helper";
 
 class VideoUpload extends React.Component {
     constructor() {

@@ -1,6 +1,6 @@
 const bootStrapList = [];
 
-export default function(todoList=bootStrapList,actions) {
+export default function(todoList = bootStrapList, actions) {
     let defaultValue = todoList;
     switch (actions.type) {
     case "ADD_TODO":

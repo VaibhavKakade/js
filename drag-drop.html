@@ -95,10 +95,8 @@ function drop(ev) {
     ev.target.removeEventListener("dragover", dragover);*/
 }
 var mouseDownFlag = false;
-var position = {
-    x: 0, y:0,
-    rotation: 0
-}
+var position = { x: 0, y:0, rotation: 0 }
+
 function handleDown(event) {
     mouseDownFlag = true;
     position.x = event.x;

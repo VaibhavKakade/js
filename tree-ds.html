@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sample</title>
+    <script type="text/javascript" src="libs/tree-model-min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+
+var tree = new TreeModel();
+
+var root = tree.parse({
+    id: 1,
+    name: "homyar",
+    children: [
+        {
+            id: 11,
+            name: "JD",
+            children: [
+                {
+                    id: 111,
+                    name: "VK"
+                }
+            ]
+        },
+        {
+            id: 12,
+            name: "JJ"
+        }
+    ]
+});
+
+
+var newNode = tree.parse({
+    id: 1111,
+    name: "ABC"
+});
+
+var vk = root.first((node) => node.model.id == 111);
+console.log("vk = ", vk);
+vk.addChild(newNode);
+
+root.walk(function (node) {
+    console.log(node.model.name);
+});
+
+var c = root.children.map(c=>c.model);
+console.log(c);
+
+</script>
+</body>
+</html>

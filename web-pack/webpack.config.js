@@ -21,7 +21,6 @@ const config = {
         //     }
         // }),
         // new webpack.optimize.OccurrenceOrderPlugin(),
-
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template: './src/index.html'

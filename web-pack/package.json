@@ -4,7 +4,7 @@
   "author": "Vaibhav Kakade",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --inline --port 5000"
+    "start": "webpack-dev-server --watch-poll"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",
